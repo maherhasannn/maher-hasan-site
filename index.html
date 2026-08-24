@@ -1,28 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Enter Age</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Maher Hasan</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", sans-serif;
+      background: #f7f7f5;
+      color: #161616;
+      display: flex;
+      justify-content: center;
+    }
+
+    main {
+      width: 100%;
+      max-width: 720px;
+      padding: 120px 28px 80px;
+    }
+
+    .intro {
+      margin-bottom: 80px;
+    }
+
+    h1 {
+      font-size: 42px;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      font-weight: 500;
+      margin: 0 0 22px;
+    }
+
+    .intro p {
+      max-width: 570px;
+      font-size: 17px;
+      line-height: 1.65;
+      color: #666;
+      margin: 0;
+    }
+
+    .section {
+      border-top: 1px solid #ddd;
+      padding: 22px 0 32px;
+    }
+
+    .section-header {
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #999;
+      margin-bottom: 18px;
+    }
+
+    .project {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 20px;
+      padding: 10px 0;
+    }
+
+    .project-name {
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .project-description {
+      color: #666;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    a {
+      color: #161616;
+      text-decoration: none;
+      border-bottom: 1px solid #bbb;
+      padding-bottom: 2px;
+      transition: opacity 0.2s ease;
+    }
+
+    a:hover {
+      opacity: 0.5;
+    }
+
+    footer {
+      margin-top: 70px;
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding-top: 70px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .project {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        margin-bottom: 16px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <div>
-    <h5>how do I center a div</h5>
-  </div>
+  <main>
 
-  <div style="text-align:center; margin-top:20%;">
-    <h2>Enter your age</h2>
-    <form id="ageForm">
-      <input type="number" required>
-      <button type="submit">Submit</button>
-    </form>
-    <p id="error" style="color:red; display:none;">A user with this age already exists. Pls accept me yc </p>
-  </div>
+    <section class="intro">
+      <h1>Maher Hasan</h1>
 
-  <script>
-    document.getElementById('ageForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      document.getElementById('error').style.display = 'block';
-    });
-  </script>
+      <p>
+        I build software, data infrastructure, and companies around messy
+        real-world problems. Currently working on systems involving physical
+        intelligence, large-scale data, and automation.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="section-header">Currently</div>
+
+      <div class="project">
+        <div class="project-name">Govia</div>
+        <div class="project-description">
+          Building infrastructure for verifiable physical intelligence —
+          turning fragmented aviation and maritime sensor data into a
+          defensible record of how things move through the world.
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-name">Semperr</div>
+        <div class="project-description">
+          Building acquisition and intake infrastructure for law firms,
+          focused on making client acquisition more measurable and operationally useful.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">Background</div>
+
+      <div class="project">
+        <div class="project-name">Engineering</div>
+        <div class="project-description">
+          Data platforms, distributed systems, infrastructure, and the
+          occasional questionable amount of time spent looking at Kafka.
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-name">Interests</div>
+        <div class="project-description">
+          Sensor networks, aviation, intelligence systems, applied ML,
+          startups, and unusually difficult data problems.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">Elsewhere</div>
+
+      <div class="links">
+        <a href="https://www.linkedin.com/in/maherhasann" target="_blank">
+          LinkedIn ↗
+        </a>
+
+        <a href="mailto:you@example.com">
+          Email ↗
+        </a>
+
+        <a href="https://github.com/YOURUSERNAME" target="_blank">
+          GitHub ↗
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      San Francisco · 2026
+    </footer>
+
+  </main>
 </body>
 </html>
