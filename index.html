@@ -809,6 +809,92 @@
       100% { transform: scaleX(0); transform-origin: right; }
     }
 
+    /* Education and experience: label column, then logo chips */
+
+    .org-row {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      align-items: start;
+    }
+
+    .org-row + .org-row {
+      margin-top: 10px;
+    }
+
+    .content .org-row h2 {
+      margin: 0;
+      line-height: 24px;
+    }
+
+    .content .org-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 18px;
+      padding: 0;
+    }
+
+    .content .org-list li {
+      margin: 0;
+    }
+
+    .org {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 24px;
+      color: var(--text-body);
+      text-decoration: none;
+    }
+
+    .logo {
+      flex: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      background: #fff;
+      box-shadow: 0 0 0 1px #0000000f, 0 1px 2px #0000000d;
+      object-fit: cover;
+      transition: transform 0.25s cubic-bezier(0.3, 1.6, 0.5, 1);
+    }
+
+    .logo-padded {
+      padding: 2px;
+      object-fit: contain;
+    }
+
+    .org:hover .logo {
+      transform: translateY(-2px) rotate(-6deg) scale(1.08);
+    }
+
+    .org:hover {
+      color: var(--foreground);
+    }
+
+    .org:focus-visible {
+      outline: 2px solid var(--foreground);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    .play .logo {
+      animation: pop-in 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) calc(var(--k) * 90ms + 100ms) both;
+    }
+
+    @keyframes pop-in {
+      from { opacity: 0; transform: translateY(4px) scale(0.6); }
+    }
+
+    html.js .org-row {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    html.js .org-row.seen {
+      opacity: 1;
+      transform: none;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
@@ -818,7 +904,8 @@
       }
 
       html.js .story li,
-      html.js .now {
+      html.js .now,
+      html.js .org-row {
         opacity: 1;
         transform: none;
       }
@@ -953,13 +1040,36 @@
             sensor fusion technology at Govia Systems, pushing code I wrote through <span class="fx fx-redact">governments</span>.
           </p>
         </section>
+
+        <section class="orgs" aria-label="Education and experience">
+          <div class="org-row">
+            <h2>education</h2>
+            <ul class="org-list">
+              <li><a class="org" href="https://www.berkeley.edu/" rel="noreferrer" target="_blank"><img class="logo" src="logos/berkeley.svg" alt="" width="20" height="20" style="--k:0">UC Berkeley</a></li>
+            </ul>
+          </div>
+          <div class="org-row">
+            <h2>previously</h2>
+            <ul class="org-list">
+              <li><a class="org" href="https://www.apple.com/" rel="noreferrer" target="_blank"><img class="logo" src="logos/apple.png" alt="" width="20" height="20" style="--k:0">Apple</a></li>
+              <li><a class="org" href="https://www.vannevarlabs.com/" rel="noreferrer" target="_blank"><img class="logo" src="logos/vannevar.svg" alt="" width="20" height="20" style="--k:1">Vannevar Labs</a></li>
+            </ul>
+          </div>
+          <div class="org-row">
+            <h2>research</h2>
+            <ul class="org-list">
+              <li><a class="org" href="https://www.ucsf.edu/" rel="noreferrer" target="_blank"><img class="logo" src="logos/ucsf.svg" alt="" width="20" height="20" style="--k:0">UCSF</a></li>
+              <li><a class="org" href="https://foundry.citris-uc.org/" rel="noreferrer" target="_blank"><img class="logo logo-padded" src="logos/citris-foundry.png" alt="" width="20" height="20" style="--k:1">CITRIS Foundry</a></li>
+            </ul>
+          </div>
+        </section>
       </div>
 
     </div>
   </main>
   <script>
     (function () {
-      var items = document.querySelectorAll(".story li, .now");
+      var items = document.querySelectorAll(".story li, .now, .org-row");
       var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       // Splits a phrase into per-letter spans (kept whole per word so lines
@@ -993,7 +1103,7 @@
         var to = +el.dataset.to, dec = +el.dataset.decimals, suffix = el.dataset.suffix || "", final = el.textContent;
         var start = performance.now(), dur = 1400;
         (function tick(now) {
-          var t = Math.min((now - start) / dur, 1), e = 1 - Math.pow(1 - t, 3);
+          var t = Math.min(Math.max((now - start) / dur, 0), 1), e = 1 - Math.pow(1 - t, 3);
           el.textContent = t < 1 ? (to * e).toFixed(dec) + suffix : final;
           if (t < 1) requestAnimationFrame(tick);
         })(start);
